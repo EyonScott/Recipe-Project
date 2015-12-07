@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<title>recipe</title>
+<head>
+    <link rel="stylesheet" type="text/css" href="recipe.css">
+    <script type="text/javascript" src="jquery-1.11.3.js"></script>
+    <script type="text/javascript">
+        // $(function() {
+        //     var overlay = $("#d1");
+        //     $('#d1').mouseover(function(){
+        //         $("#d1").css("background-color", "WhiteSmoke");
+        //     $("#d1").mouseover("mouseover");
+        //     });
+        //     var takeaway = $(".d2");
+        //     $("#.d2").mouseleave(function(){
+        //         $(".d2").css("background-color", "White");
+        //     $(".d2").mouseleave("mouseleave");
+        //     });
+        // });
+        $(function() {
+            var image = $(".image");
+            
+            $(".image").mouseover(function(){
+                $(this).animate({opacity: 0.4}, 200);
+                
+            });
+            $(".image").mouseout(function(){
+                $(this).animate({opacity: 1.0}, 200);
+                
+            });
+
+            var nameheader = $("h2");
+            $("h2").mouseover(function(){
+                $(this).style("color", "black");
+            });
+            $("h2").mouseout(function(){
+                $(this).style("color", "transparent");
+            });
+        });
+    </script>
+</head>
+<body>
+    <h1>Recipe Jam!</h1>
+    <div id="photo"> 
+        <div>
+            <h2 class="nameheader">Bread</h2> 
+            <img src="https://upload.wikimedia.org/wikipedia/commons/7/71/Anadama_bread_(1).jpg" class="image" width= 100% />
+        </div>
+        <div>
+            <!-- <h2 class="nameheader">Brown Butter Pumpkin Waffles</h2> --> 
+            <img src="http://www.twopeasandtheirpod.com/wp-content/uploads/2013/09/Brown-Butter-Pumpkin-Waffles-4.jpg" class="image" width= 100% />
+        </div>
+        <div>
+            <!-- <h2 class="nameheader">Sushi</h2>  -->
+            <img src="http://www.house-sushi.com/wp-content/uploads/2013/12/sushi.jpg" class="image" width= 100% />
+        </div>
+        <div>
+            <!-- <h2 class="nameheader">Pizza Margherita</h2>  -->
+            <img src="https://upload.wikimedia.org/wikipedia/commons/a/a3/Eq_it-na_pizza-margherita_sep2005_sml.jpg" class="image" width= 100% />
+        </div>
+        <div>
+            <!-- <h2 class="nameheader">Chopped Salad</h2>  -->
+            <img src="http://www.cornerbakerycafe.com/getmedia/63a151e3-77d3-4fd4-9d86-624f7616e9c0/Chopped-Salad_550x310?width=550&height=310&ext=.jpg" class="image" width= 100% />
+        </div>
+        <div>
+            <!-- <h2 class="nameheader">French Toast</h2> --> 
+            <img src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcTTrT0STGzHVV798xljoRlVTzcZPqg1jiAk96BCt-H1JNlg1hSY" class="image" width= 100% />
+        </div>
+        <div>
+            <!-- <h2 class="nameheader">Asian Style Italian Pasta</h2>  -->
+            <img src="https://upload.wikimedia.org/wikipedia/commons/a/a2/Asian_Style_Italian_Pasta.jpg" class="image" width= 100% />
+        </div>
+        <div>
+            <!-- <h2 class="nameheader">Cake</h2> --> 
+            <img src="http://dreamatico.com/data_images/cake/cake-8.jpg" class="image" width= 100% />
+        </div>
+    </div>    
+</body>
+</html>
