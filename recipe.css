@@ -27,7 +27,20 @@ h2 {
   left: 100px;
   right: 100px;
   text-decoration: none;
-  color: transparent;
+  /*color: transparent;*/
+}
+span{
+  position: relative;
+  /*display: none;*/
+  visibility: hidden;
+  font-size: 30px;
+  bottom:180px;
+  /*top: 50px;*/
+  /*width: 100%;*/
+  left: 100px;
+  right: 100px;
+  text-decoration: none;
+  /*color: transparent;*/
 }
 
 h2:hover
