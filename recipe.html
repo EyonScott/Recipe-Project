@@ -1,50 +1,24 @@
 <!DOCTYPE html>
 <html>
-<title>recipe</title>
+<title>Recipe</title>
 <head>
     <link rel="stylesheet" type="text/css" href="recipe.css">
+    <link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
     <script type="text/javascript" src="jquery-1.11.3.js"></script>
-    <script type="text/javascript">
-        // $(function() {
-        //     var overlay = $("#d1");
-        //     $('#d1').mouseover(function(){
-        //         $("#d1").css("background-color", "WhiteSmoke");
-        //     $("#d1").mouseover("mouseover");
-        //     });
-        //     var takeaway = $(".d2");
-        //     $("#.d2").mouseleave(function(){
-        //         $(".d2").css("background-color", "White");
-        //     $(".d2").mouseleave("mouseleave");
-        //     });
-        // });
-        $(function() {
-            var image = $(".image");
-            
-            $(".image").mouseover(function(){
-                $(this).animate({opacity: 0.4}, 200);
-                $(this).next("span").css("visibility", "visible");
-                // console.log("this", this);
-                // console.log("previousSibling", closestSpan)
-                
-            });
-            $(".image").mouseout(function(){
-                $(this).animate({opacity: 1.0}, 200);
-                $(this).next("span").css("visibility", "hidden");
-                
-            });
-
-            var nameheader = $("h2");
-            $("h2").mouseover(function(){
-                $(this).style("color", "black");
-            });
-            $("h2").mouseout(function(){
-                $(this).style("color", "transparent");
-            });
-        });
-    </script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
+    <script type="text/javascript" src="http://oauth.googlecode.com/svn/code/javascript/oauth.js"></script>
+    <script type="text/javascript" src="http://oauth.googlecode.com/svn/code/javascript/sha1.js"></script>
+    
 </head>
 <body>
     <h1>Recipe Jam!</h1>
+    <h3>Too busy to cook?</h3>
+        <form>
+            <input id="data" placeholder="Search Yelp"></input>
+            <button id="go">Go</button>
+        </form>
+        <p id="yelpData"></p>
+
     <div id="photo"> 
         <div>
              
@@ -85,6 +59,131 @@
             <img src="http://dreamatico.com/data_images/cake/cake-8.jpg" class="image" width= 100% />
             <span class="nameheader">Cake</span>
         </div>
-    </div>    
+    </div>   
+
 </body>
+    <script type="text/javascript">
+        // $(function() {
+        //     var overlay = $("#d1");
+        //     $('#d1').mouseover(function(){
+        //         $("#d1").css("background-color", "WhiteSmoke");
+        //     $("#d1").mouseover("mouseover");
+        //     });
+        //     var takeaway = $(".d2");
+        //     $("#.d2").mouseleave(function(){
+        //         $(".d2").css("background-color", "White");
+        //     $(".d2").mouseleave("mouseleave");
+        //     });
+        // });
+        $(function() {
+            var image = $(".image");
+            
+            $(".image").mouseover(function(){
+                $(this).animate({opacity: 0.4}, 200);
+                $(this).next("span").css("visibility", "visible");
+                // console.log("this", this);
+                // console.log("previousSibling", closestSpan)
+                
+            });
+            $(".image").mouseout(function(){
+                $(this).animate({opacity: 1.0}, 200);
+                $(this).next("span").css("visibility", "hidden");
+                
+            });
+
+
+            var nameheader = $("h2");
+            $("h2").mouseover(function(){
+                $(this).style("color", "black");
+            });
+            $("h2").mouseout(function(){
+                $(this).style("color", "transparent");
+            });
+
+
+            $("#go").click(function(event){
+                event.preventDefault();
+                 var auth = {
+                //
+                // Update with your auth tokens.
+                //
+                consumerKey : "Ad52mmK6JCoR16xKSjLwsA",
+                consumerSecret : "N3iLsvIdGq-mc825A5U8ySr3Swk",
+                accessToken : "9-dvvC5RFpFJmpMXJXg0Jobl5VPLW3Ot",
+                // This example is a proof of concept, for how to use the Yelp v2 API with javascript.
+                // You wouldn't actually want to expose your access token secret like this in a real application.
+                accessTokenSecret : "66AQccnI59ezaHGMpiE-sNNz_8s",
+                serviceProvider : {
+                    signatureMethod : "HMAC-SHA1"
+                }
+            
+            };
+           
+            var terms = $('#data').val();
+            var near = 'San+Francisco';
+            var sort = 2;
+            var limit = 5;
+
+            var accessor = {
+                consumerSecret : auth.consumerSecret,
+                tokenSecret : auth.accessTokenSecret
+            };
+            parameters = [];
+            parameters.push(['term', terms]);
+            parameters.push(['location', near]);
+            parameters.push(['sort', sort]);
+            parameters.push(['limit', limit]);
+            parameters.push(['callback', 'cb']);
+            parameters.push(['oauth_consumer_key', auth.consumerKey]);
+            parameters.push(['oauth_consumer_secret', auth.consumerSecret]);
+            parameters.push(['oauth_token', auth.accessToken]);
+            parameters.push(['oauth_signature_method', 'HMAC-SHA1']);
+
+            var message = {
+                'action' : 'http://api.yelp.com/v2/search',
+                'method' : 'GET',
+                'parameters' : parameters
+            };
+
+            OAuth.setTimestampAndNonce(message);
+            OAuth.SignatureMethod.sign(message, accessor);
+
+            var parameterMap = OAuth.getParameterMap(message.parameters);
+            console.log(parameterMap);
+
+            $.ajax({
+                'url' : message.action,
+                'data' : parameterMap,
+                'dataType' : 'jsonp',
+                'jsonpCallback' : 'cb',
+                'success' : function(data, textStats, XMLHttpRequest) {
+
+                    console.log(data);
+                    //$("body").append(output);
+                    // data.forEach(function(subData){
+                    //     console.log(subData.val())
+                    // });
+                    for(var i=0; i<5; i++){
+                        console.log(data.businesses[i].url);
+                        console.log(data.businesses[i].name);
+                        console.log(data.businesses[i].location);
+                        console.log(data.businesses[i].rating);
+                    };
+                }
+            });
+            
+           }); 
+            // var searchFood
+            // $("#ajaxSearch").submit(function(){
+            //     searchFood = $("#searchYelp")[0, 5].value;
+            //     console.log("searchFood", searchFood);
+
+            //     $.get("https://api.spotify.com/v1/search?q="+searchName+"&type=artist", function(data){
+            //         console.log("data", data);
+            //         $("#yelpResults").text(data.businesses.[i].name);
+            //     })
+            // });
+        });
+    </script>
+
 </html>
