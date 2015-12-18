@@ -17,7 +17,8 @@
             <input id="data" placeholder="Search Yelp"></input>
             <button id="go">Go</button>
         </form>
-        <p id="yelpData"></p>
+        <!-- <h3 id="yelpData"></h3> -->
+        <div id="yelpData"></div>
 
     <div id="photo"> 
         <div>
@@ -60,6 +61,7 @@
             <span class="nameheader">Cake</span>
         </div>
     </div>   
+    <!-- <div id="yelpResponse"></div> -->
 
 </body>
     <script type="text/javascript">
@@ -75,22 +77,20 @@
         //     $(".d2").mouseleave("mouseleave");
         //     });
         // });
-        $(function() {
+        $(function(){
             var image = $(".image");
             
             $(".image").mouseover(function(){
                 $(this).animate({opacity: 0.4}, 200);
                 $(this).next("span").css("visibility", "visible");
                 // console.log("this", this);
-                // console.log("previousSibling", closestSpan)
-                
-            });
-            $(".image").mouseout(function(){
-                $(this).animate({opacity: 1.0}, 200);
-                $(this).next("span").css("visibility", "hidden");
-                
+                // console.log("previousSibling", closestSpan)  
             });
 
+            $(".image").mouseout(function(){
+                $(this).animate({opacity: 1.0}, 200);
+                $(this).next("span").css("visibility", "hidden");  
+            });
 
             var nameheader = $("h2");
             $("h2").mouseover(function(){
@@ -100,24 +100,39 @@
                 $(this).style("color", "transparent");
             });
 
-
             $("#go").click(function(event){
                 event.preventDefault();
-                 var auth = {
-                //
-                // Update with your auth tokens.
-                //
-                consumerKey : "Ad52mmK6JCoR16xKSjLwsA",
-                consumerSecret : "N3iLsvIdGq-mc825A5U8ySr3Swk",
-                accessToken : "9-dvvC5RFpFJmpMXJXg0Jobl5VPLW3Ot",
-                // This example is a proof of concept, for how to use the Yelp v2 API with javascript.
-                // You wouldn't actually want to expose your access token secret like this in a real application.
-                accessTokenSecret : "66AQccnI59ezaHGMpiE-sNNz_8s",
-                serviceProvider : {
-                    signatureMethod : "HMAC-SHA1"
+                $("#yelpData").empty();
+                var auth = {
+                    //
+                    // Update with your auth tokens.
+                    //
+                    consumerKey : "Ad52mmK6JCoR16xKSjLwsA",
+                    consumerSecret : "N3iLsvIdGq-mc825A5U8ySr3Swk",
+                    accessToken : "9-dvvC5RFpFJmpMXJXg0Jobl5VPLW3Ot",
+                    // This example is a proof of concept, for how to use the Yelp v2 API with javascript.
+                    // You wouldn't actually want to expose your access token secret like this in a real application.
+                    accessTokenSecret : "66AQccnI59ezaHGMpiE-sNNz_8s",
+                    serviceProvider : {
+                        signatureMethod : "HMAC-SHA1"
+                    }
+
+                 // var searchFood;
+                 // $(function(){
+                    // $("#ajaxSearch").submit(function(){
+                //     $("#go").click(function(){
+
+                //   // console.log("searchFood", searchFood);
+
+                //         $.get("http://api.yelp.com/v2/search", function(data){
+                //         console.log("data recieved back from AJAX call", data);
+                //         //console.log("data", data);
+                //         $("#yelpData").text(data);
+                //     };
+                // });
+                // });
                 }
-            
-            };
+            // });
            
             var terms = $('#data').val();
             var near = 'San+Francisco';
@@ -157,13 +172,33 @@
                 'dataType' : 'jsonp',
                 'jsonpCallback' : 'cb',
                 'success' : function(data, textStats, XMLHttpRequest) {
-
                     console.log(data);
                     //$("body").append(output);
                     // data.forEach(function(subData){
                     //     console.log(subData.val())
                     // });
+                    var responseDiv = $("#yelpData");
+                    // var responseDiv2 = $("#yelpData2")
                     for(var i=0; i<5; i++){
+
+                        // var name = document.createElement('p');
+                        // name.Text = data.businesses[i].name;
+                        // // console.log('name###################',name);
+                        // var rating = document.createElement('p');
+                        // rating.Text = data.businesses[i].rating;
+
+                        // var url = document.createElement('p');
+                        // url.Text = data.businesses[i].url;
+                        var place = '<p>' + '<h4>' + data.businesses[i].name + '</h4>' + 'Rating : ' + data.businesses[i].rating + '<br>' + '<br>' + 'For more information visit : ' + '<br>' + data.businesses[i].url + '</p>'
+                        // place.append(data.businesses[i].name);
+                        // place.append(data.businesses[i].rating);
+                        // place.append(data.businesses[i].url);
+                        // place.append('</p>');
+                        // responseDiv.append(data.businesses[i].name);
+                        // responseDiv.append(data.businesses[i].rating);
+                        // responseDiv.append(data.businesses[i].url);
+                        $('#yelpData').append(place);
+
                         console.log(data.businesses[i].url);
                         console.log(data.businesses[i].name);
                         console.log(data.businesses[i].location);
@@ -172,17 +207,9 @@
                 }
             });
             
-           }); 
-            // var searchFood
-            // $("#ajaxSearch").submit(function(){
-            //     searchFood = $("#searchYelp")[0, 5].value;
-            //     console.log("searchFood", searchFood);
+           // }); 
 
-            //     $.get("https://api.spotify.com/v1/search?q="+searchName+"&type=artist", function(data){
-            //         console.log("data", data);
-            //         $("#yelpResults").text(data.businesses.[i].name);
-            //     })
-            // });
+            });
         });
     </script>
 
