@@ -22,43 +22,54 @@
 
     <div id="photo"> 
         <div>
-             
-            <img src="https://upload.wikimedia.org/wikipedia/commons/7/71/Anadama_bread_(1).jpg" class="image" data-pictureLabel="Salmon" width= 100% />
-            <span class="nameheader">Bread</span>
+            <a href="recipepage.html?recipe=bread">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/7/71/Anadama_bread_(1).jpg" class="image" data-pictureLabel="Salmon" width= 100% />
+                <span class="nameheader">Bread</span>
+
+            </a>
         </div>
         <div>
-            <!-- <h2 class="nameheader">Brown Butter Pumpkin Waffles</h2> --> 
-            <img src="http://www.twopeasandtheirpod.com/wp-content/uploads/2013/09/Brown-Butter-Pumpkin-Waffles-4.jpg" class="image" width= 100%></img>
-            <span class="nameheader">Brown Butter Pumpkin Waffles</span>
-        </div>
-        <div> 
-            <img src="http://www.house-sushi.com/wp-content/uploads/2013/12/sushi.jpg" class="image" width= 100% />
-            <span class="nameheader">Sushi</span>
+             <a href="recipepage.html?recipe=waffle">
+                <!-- <h2 class="nameheader">Brown Butter Pumpkin Waffles</h2> --> 
+                <img src="http://www.twopeasandtheirpod.com/wp-content/uploads/2013/09/Brown-Butter-Pumpkin-Waffles-4.jpg" class="image" width= 100%></img>
+                <span class="nameheader">Brown Butter<br>Pumpkin Waffles</span>
+            </a>
         </div>
         <div>
-            <!-- <h2 class="nameheader">Pizza Margherita</h2>  -->
-            <img src="https://upload.wikimedia.org/wikipedia/commons/a/a3/Eq_it-na_pizza-margherita_sep2005_sml.jpg" class="image" width= 100% />
-            <span class="nameheader">Pizza Margherita</span>
+            <a href="recipepage.html?recipe=sushi">
+                <img src="http://www.house-sushi.com/wp-content/uploads/2013/12/sushi.jpg" class="image" width= 100% />
+                <span class="nameheader">Sushi</span>
+            </a>
         </div>
         <div>
-            <!-- <h2 class="nameheader">Chopped Salad</h2>  -->
-            <img src="http://www.cornerbakerycafe.com/getmedia/63a151e3-77d3-4fd4-9d86-624f7616e9c0/Chopped-Salad_550x310?width=550&height=310&ext=.jpg" class="image" width= 100% />
-            <span class="nameheader">Chopped Salad</span>
+            <a href="recipepage.html?recipe=pizza">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/a/a3/Eq_it-na_pizza-margherita_sep2005_sml.jpg" class="image" width= 100% />
+                <span class="nameheader">Pizza Margherita</span>
+            </a>
         </div>
         <div>
-            <!-- <h2 class="nameheader">French Toast</h2> --> 
-            <img src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcTTrT0STGzHVV798xljoRlVTzcZPqg1jiAk96BCt-H1JNlg1hSY" class="image" width= 100% />
-            <span class="nameheader">French Toast</span>
+            <a href="recipepage.html?recipe=salad">
+                <img src="http://www.cornerbakerycafe.com/getmedia/63a151e3-77d3-4fd4-9d86-624f7616e9c0/Chopped-Salad_550x310?width=550&height=310&ext=.jpg" class="image" width= 100% />
+                <span class="nameheader">Chopped Salad</span>
+            </a>
         </div>
         <div>
-            <!-- <h2 class="nameheader">Asian Style Italian Pasta</h2>  -->
-            <img src="https://upload.wikimedia.org/wikipedia/commons/a/a2/Asian_Style_Italian_Pasta.jpg" class="image" width= 100% />
-            <span class="nameheader">Asian Style Italian Pasta</span>
+            <a href="recipepage.html?recipe=jam">
+                <img src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcTTrT0STGzHVV798xljoRlVTzcZPqg1jiAk96BCt-H1JNlg1hSY" class="image" width= 100% />
+                <span class="nameheader">French Toast Jam</span>
+            </a>
         </div>
         <div>
-            <!-- <h2 class="nameheader">Cake</h2> --> 
-            <img src="http://dreamatico.com/data_images/cake/cake-8.jpg" class="image" width= 100% />
-            <span class="nameheader">Cake</span>
+            <a href="recipepage.html?recipe=pasta">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/a/a2/Asian_Style_Italian_Pasta.jpg" class="image" width= 100% />
+                <span class="nameheader">Asian Style<br>Italian Pasta</span>
+            </a>
+        </div>
+        <div>
+            <a href="recipepage.html?recipe=chocolate_cake">
+                <img src="http://dreamatico.com/data_images/cake/cake-8.jpg" class="image" width= 100% />
+                <span class="nameheader">Cake</span>
+            </a>
         </div>
     </div>   
     <!-- <div id="yelpResponse"></div> -->
@@ -88,17 +99,17 @@
             });
 
             $(".image").mouseout(function(){
-                $(this).animate({opacity: 1.0}, 200);
+                $(this).animate({opacity: 1.0}, 200).delay( 800 );
                 $(this).next("span").css("visibility", "hidden");  
             });
 
-            var nameheader = $("h2");
-            $("h2").mouseover(function(){
-                $(this).style("color", "black");
-            });
-            $("h2").mouseout(function(){
-                $(this).style("color", "transparent");
-            });
+            // var nameheader = $("h2");
+            // $("h2").mouseover(function(){
+            //     $(this).style("color", "black");
+            // });
+            // $("h2").mouseout(function(){
+            //     $(this).style("color", "transparent");
+            // });
 
             $("#go").click(function(event){
                 event.preventDefault();
